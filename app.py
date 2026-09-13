@@ -50,18 +50,21 @@ def load_documents():
     return documents
 
 
-def chunk_text(text, chunk_size=80):
+def chunk_text(text):
     """
-    Split text into smaller chunks.
+    Split the document into paragraph-based chunks.
     """
 
-    words = text.split()
+    paragraphs = text.split("\n\n")
 
     chunks = []
 
-    for i in range(0, len(words), chunk_size):
-        chunk = " ".join(words[i:i + chunk_size])
-        chunks.append(chunk)
+    for paragraph in paragraphs:
+
+        paragraph = paragraph.strip()
+
+        if paragraph:
+            chunks.append(paragraph)
 
     return chunks
 
